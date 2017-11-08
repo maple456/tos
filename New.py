@@ -32,98 +32,54 @@ sys.setdefaultencoding('utf-8')
 
 helpMessage ="""
 ========================
-        一般用戶
+        所有用戶
 ========================
- 
- Creator
- Tob say
- GCreator
- Apakah
- Rate
- 
+
+   作者
+   學我說 [句子]
+   請問 [問題]
+   算命
+   群組資訊
+
 ========================
-         高級用戶
+         管理指令
 ========================
- 
- Admadd @
- Admrem @
- Adminlist
- InviteMeTo:
- 
-========================
-         管理人員
-========================
- 
- Id
- Mid
- Me
- Urloff
- Urlon
- Ginfo
- Cancel
- Gn
- Cname:
- Cstatus:
- Gcreator:inv
- Out
- Invite
- Gift
- Respon
- Tagall
- Glist
- Spam:
- Check > Absen
- Steal home @
- Steal dp @
- 
-========================
-         機器指令
-========================
- 
- K on/off
- Join on/off
- Comment on/off
- Share on/off
- 
-========================
-         模仿指令
-========================
- 
- Mimic:on
- Mimic:add: @
- Mimic:del: @
- ListTarget
- 
-========================
-    控制指令
-========================
- 
- Guest On/Off
- Mad On/Off
- Qr On/Off
- Protect On/Off
- Ban @ 
- Unban @
- Kill Ban
- Kill @
- Nk
- Vk
- Mayhem
- 
+
+   管理員清單
+   新增管理員 @
+   移除管理員 @
+   群組列表
+   邀請我加入 [群組密碼]
+   群組主人
+   邀請群組主人
+ 關閉網址
+ 開啟網址
+ 取消所有邀請
+   保護取消邀請
+ 邀請 [個人密碼]
+ 群組名稱 [名稱]
+ 睡你媽B起來嗨
+   呼叫
+   檢查
+   測試
+ 翻群
+   茶茶再見
+
 =========================
 製作:针.
 管理:DxSdzer.
-機器:茶茶
+主機:茶茶
+國家:Taiwan
 """
 KAC=[cl,ki]
 mid = cl.getProfile().mid
 Amid = ki.getProfile().mid
 
 Bots=[mid,Amid]
-admin=["ua7fb5762d5066629323d113e1266e8ca","uc8e2c2b906e2322592c6d8f91a0957f7"]
-creator=["ua7fb5762d5066629323d113e1266e8ca","uc8e2c2b906e2322592c6d8f91a0957f7"]
+admin=["uf274cd013e86f8bffec153a26e45f247","uf8c9b79726d4c8faa77588591a1e4b17"]
+creator=["uf274cd013e86f8bffec153a26e45f247","uf8c9b79726d4c8faa77588591a1e4b17"]
 wait = {
-    'contact':False,
+    'contact':True,
     'autoJoin':True,
     'autoCancel':{"on":True,"members":1},
     'leaveRoom':True,
@@ -335,12 +291,12 @@ def bot(op):
                 group = random.choice(KAC).getGroup(op.param1)
                 cb = Message()
                 cb.to = op.param1
-                cb.text = random.choice(KAC).getContact(op.param2).displayName + " [NewMemb]\n\nSelamat Datang" + random.choice(KAC).getContact(op.param2).displayName + " di [" + group.name + "]\nJGN NAKAL OK!!" + "\n\nCreator => " + group.creator.displayName
+                cb.text = "歡迎:" + random.choice(KAC).getContact(op.param2).displayName + "加入群組\n群組名稱:" + group.name + "\n群組主人 => " + group.creator.displayName
                 random.choice(KAC).sendMessage(cb)
         if op.type == 15:
             if op.param2 in Bots:
                 return
-            ki.sendText(op.param1, "Good Bye Kaka")
+            ki.sendText(op.param1, "嗚嗚 離開惹")
             print "MemberLeft"
         if op.type == 13:
             if op.param3 in mid:
@@ -664,25 +620,25 @@ def bot(op):
                             cu = cl.channel.getCover(msg.contentMetadata["mid"])
                         except:
                             cu = ""
-                        cl.sendText(msg.to,"[displayName]:\n" + msg.contentMetadata["displayName"] + "\n[mid]:\n" + msg.contentMetadata["mid"] + "\n[statusMessage]:\n" + contact.statusMessage + "\n[pictureStatus]:\nhttp://dl.profile.line-cdn.net/" + contact.pictureStatus + "\n[coverURL]:\n" + str(cu))
+                        cl.sendText(msg.to,"[個人名稱]:\n" + msg.contentMetadata["displayName"] + "\n[mid]:\n" + msg.contentMetadata["個人密碼"] + "\n[個性簽名]:\n" + contact.statusMessage + "\n[個人頭像]:\nhttp://dl.profile.line-cdn.net/" + contact.pictureStatus + "\n[個人封面]:\n" + str(cu))
                     else:
                         contact = cl.getContact(msg.contentMetadata["mid"])
                         try:
                             cu = cl.channel.getCover(msg.contentMetadata["mid"])
                         except:
                             cu = ""
-                        cl.sendText(msg.to,"[displayName]:\n" + contact.displayName + "\n[mid]:\n" + msg.contentMetadata["mid"] + "\n[statusMessage]:\n" + contact.statusMessage + "\n[pictureStatus]:\nhttp://dl.profile.line-cdn.net/" + contact.pictureStatus + "\n[coverURL]:\n" + str(cu))
+                        cl.sendText(msg.to,"[個人名稱]:\n" + contact.displayName + "\n[個人密碼]:\n" + msg.contentMetadata["mid"] + "\n[個性簽名]:\n" + contact.statusMessage + "\n[個人頭像]:\nhttp://dl.profile.line-cdn.net/" + contact.pictureStatus + "\n[個人封面]:\n" + str(cu))
             elif msg.contentType == 16:
                 if wait["timeline"] == True:
                     msg.contentType = 0
                     if wait["lang"] == "JP":
-                        msg.text = "post URL\n" + msg.contentMetadata["postEndUrl"]
+                        msg.text = "文章網址\n" + msg.contentMetadata["postEndUrl"]
                     else:
                         msg.text = "URLâ†’\n" + msg.contentMetadata["postEndUrl"]
                     cl.sendText(msg.to,msg.text)
             elif msg.text is None:
                 return
-            elif msg.text in ["Key","help","Help"]:
+            elif msg.text in ["幫助","help","Help"]:
 					if wait["lang"] == "JP":
 						cl.sendText(msg.to,helpMessage)
 					else:
@@ -735,9 +691,9 @@ def bot(op):
 				if msg.from_ in admin:
 					midd = msg.text.replace("Cv3 kick ","")
 					kc.kickoutFromGroup(msg.to,[midd])
-            elif "Invite " in msg.text:
+            elif "邀請 " in msg.text:
 				if msg.from_ in admin:
-					midd = msg.text.replace("Invite ","")
+					midd = msg.text.replace("邀請 ","")
 					cl.findAndAddContactsByMid(midd)
 					cl.inviteIntoGroup(msg.to,[midd])
             elif "Bot1 invite " in msg.text:
@@ -812,7 +768,7 @@ def bot(op):
 					ki.sendMessage(msg)
 					kk.sendMessage(msg)
 					kc.sendMessage(msg)
-            elif msg.text in ["cancel","Cancel"]:
+            elif msg.text in ["Cancel","取消所有邀請"]:
 				if msg.from_ in admin:
 					if msg.toType == 2:
 						X = cl.getGroup(msg.to)
@@ -821,7 +777,7 @@ def bot(op):
 							cl.cancelGroupInvitation(msg.to, gInviMids)
 						else:
 							if wait["lang"] == "JP":
-								cl.sendText(msg.to,"No one is inviting")
+								cl.sendText(msg.to,"沒有人於邀請中")
 							else:
 								cl.sendText(msg.to,"Sorry, nobody absent")
 					else:
@@ -849,14 +805,14 @@ def bot(op):
             #elif "gurl" == msg.text:
                 #print cl.getGroup(msg.to)
                 ##cl.sendMessage(msg)
-            elif msg.text in ["Ourl","Link on","Urlon"]:
+            elif msg.text in ["Ourl","Link on","開啟網址"]:
 				if msg.from_ in admin:
 					if msg.toType == 2:
 						X = cl.getGroup(msg.to)
 						X.preventJoinByTicket = False
 						cl.updateGroup(X)
 						if wait["lang"] == "JP":
-							cl.sendText(msg.to,"Done")
+							cl.sendText(msg.to,"完成")
 						else:
 							cl.sendText(msg.to,"already open")
 					else:
@@ -909,14 +865,14 @@ def bot(op):
 							kc.sendText(msg.to,"Can not be used outside the group")
 						else:
 							kc.sendText(msg.to,"Not for use less than group")
-            elif msg.text in ["Curl","Link off","Urloff"]:
+            elif msg.text in ["Curl","Link off","關閉網址"]:
 				if msg.from_ in admin:
 					if msg.toType == 2:
 						X = cl.getGroup(msg.to)
 						X.preventJoinByTicket = True
 						cl.updateGroup(X)
 						if wait["lang"] == "JP":
-							cl.sendText(msg.to,"Done")
+							cl.sendText(msg.to,"完成")
 						else:
 							cl.sendText(msg.to,"already close")
 					else:
@@ -988,7 +944,7 @@ def bot(op):
 				group=cl.findGroupByTicket(ticket_id)
 				cl.acceptGroupInvitationByTicket(group.mid,ticket_id)
 				cl.sendText(msg.to,"Sukses join ke grup %s" % str(group.name))
-            elif msg.text == "Ginfo":
+            elif msg.text == "群組資訊":
                 if msg.toType == 2:
                     ginfo = cl.getGroup(msg.to)
                     try:
@@ -1001,12 +957,12 @@ def bot(op):
                         else:
                             sinvitee = str(len(ginfo.invitee))
                         if ginfo.preventJoinByTicket == True:
-                            u = "close"
+                            u = "關閉"
                         else:
-                            u = "open"
-                        cl.sendText(msg.to,"[group name]\n" + str(ginfo.name) + "\n[gid]\n" + msg.to + "\n[group creator]\n" + gCreator + "\n[profile status]\nhttp://dl.profile.line.naver.jp/" + ginfo.pictureStatus + "\nmembers:" + str(len(ginfo.members)) + "members\npending:" + sinvitee + "people\nURL:" + u + "it is inside")
+                            u = "開放"
+                        cl.sendText(msg.to,"[群組名稱]\n" + str(ginfo.name) + "\n[辨識密碼]\n" + msg.to + "\n[群組主人]\n" + gCreator + "\n[群組封面]\nhttp://dl.profile.line.naver.jp/" + ginfo.pictureStatus + "\n[群組人數]\n" + str(len(ginfo.members)) + "人已加入\n[邀請名單]\n" + sinvitee + "人邀請中\n[群組網址]\n" + u + "中")
                     else:
-                        cl.sendText(msg.to,"[group name]\n" + str(ginfo.name) + "\n[gid]\n" + msg.to + "\n[group creator]\n" + gCreator + "\n[profile status]\nhttp://dl.profile.line.naver.jp/" + ginfo.pictureStatus)
+                        cl.sendText(msg.to,"[群組名稱]\n" + str(ginfo.name) + "\n[辨識密碼]\n" + msg.to + "\n[群組主人]\n" + gCreator + "\n[群組封面]\nhttp://dl.profile.line.naver.jp/" + ginfo.pictureStatus)
                 else:
                     if wait["lang"] == "JP":
                         cl.sendText(msg.to,"Can not be used outside the group")
@@ -1172,65 +1128,65 @@ def bot(op):
                     if wait["lang"] == "JP":
                         cl.sendText(msg.to,"Guest Stranger On")
                     else:
-                        cl.sendText(msg.to,"done")
+                        cl.sendText(msg.to,"完成")
                 else:
                     wait["Protectguest"] = True
                     if wait["lang"] == "JP":
                         cl.sendText(msg.to,"Guest Stranger On")
                     else:
-                        cl.sendText(msg.to,"done")
+                        cl.sendText(msg.to,"完成")
             elif msg.text in ["Guest Off","guest off"]:
               if msg.from_ in admin:
                 if wait["Protectguest"] == False:
                     if wait["lang"] == "JP":
                         cl.sendText(msg.to,"Guest Stranger Off")
                     else:
-                        cl.sendText(msg.to,"done")
+                        cl.sendText(msg.to,"完成")
                 else:
                     wait["Protectguest"] = False
                     if wait["lang"] == "JP":
                         cl.sendText(msg.to,"Guest Stranger Off")
                     else:
-                        cl.sendText(msg.to,"done")
+                        cl.sendText(msg.to,"完成")
             elif msg.text in ["Qr on","qr on"]:
               if msg.from_ in admin:
                 if wait["ProtectQR"] == True:
                     if wait["lang"] == "JP":
                         cl.sendText(msg.to,"Protect QR On")
                     else:
-                        cl.sendText(msg.to,"done")
+                        cl.sendText(msg.to,"完成")
                 else:
                     wait["ProtectQR"] = True
                     if wait["lang"] == "JP":
                         cl.sendText(msg.to,"Protect QR On")
                     else:
-                        cl.sendText(msg.to,"done")
+                        cl.sendText(msg.to,"完成")
             elif msg.text in ["Qr off","qr off"]:
               if msg.from_ in admin:
                 if wait["ProtectQR"] == False:
                     if wait["lang"] == "JP":
                         cl.sendText(msg.to,"Protect QR Off")
                     else:
-                        cl.sendText(msg.to,"done")
+                        cl.sendText(msg.to,"完成")
                 else:
                     wait["ProtectQR"] = False
                     if wait["lang"] == "JP":
                         cl.sendText(msg.to,"Protect QR Off")
                     else:
-                        cl.sendText(msg.to,"done")
+                        cl.sendText(msg.to,"完成")
             elif msg.text in ["茅鈧Ｃ德∶モ�λ�:茫鈥毬Ｆ捖�","K on","Contact on","茅隆炉莽陇潞茂录拧茅鈥撯��"]:
 				if msg.from_ in admin:
 					if wait["contact"] == True:
 						if wait["lang"] == "JP":
 							cl.sendText(msg.to,"already on")
 						else:
-							cl.sendText(msg.to,"done")
+							cl.sendText(msg.to,"完成")
 					else:
 						wait["contact"] = True
 						if wait["lang"] == "JP":
 							cl.sendText(msg.to,"already on")
 						else:
-							cl.sendText(msg.to,"done")
+							cl.sendText(msg.to,"完成")
             elif msg.text in ["茅鈧Ｃ德∶モ�λ�:茫鈥毬Ｆ掆��","K off","Contact off","茅隆炉莽陇潞茂录拧茅鈥斉�"]:
 				if msg.from_ in admin:
 					if wait["contact"] == False:
@@ -1243,33 +1199,33 @@ def bot(op):
 						if wait["lang"] == "JP":
 							cl.sendText(msg.to,"already off")
 						else:
-							cl.sendText(msg.to,"done")
+							cl.sendText(msg.to,"完成")
             elif msg.text in ["猫鈥÷モ�光�⒚ヂ忊�毭ヅ� :茫鈥毬Ｆ捖�","Join on","Auto join:on","猫鈥÷モ�光�⒚ヂ徠捗ヅ� 茂录拧茅鈥撯��"]:
 				if msg.from_ in admin:
 					if wait["autoJoin"] == True:
 						if wait["lang"] == "JP":
 							cl.sendText(msg.to,"already on")
 						else:
-							cl.sendText(msg.to,"done")
+							cl.sendText(msg.to,"完成")
 					else:
 						wait["autoJoin"] = True
 						if wait["lang"] == "JP":
 							cl.sendText(msg.to,"already on")
 						else:
-							cl.sendText(msg.to,"done")
+							cl.sendText(msg.to,"完成")
             elif msg.text in ["猫鈥÷モ�光�⒚ヂ忊�毭ヅ� :茫鈥毬Ｆ掆��","Join off","Auto join:off","猫鈥÷モ�光�⒚ヂ徠捗ヅ� 茂录拧茅鈥斉�"]:
 				if msg.from_ in admin:
 					if wait["autoJoin"] == False:
 						if wait["lang"] == "JP":
 							cl.sendText(msg.to,"already off")
 						else:
-							cl.sendText(msg.to,"done")
+							cl.sendText(msg.to,"完成")
 					else:
 						wait["autoJoin"] = False
 						if wait["lang"] == "JP":
 							cl.sendText(msg.to,"already off")
 						else:
-							cl.sendText(msg.to,"done")
+							cl.sendText(msg.to,"完成")
             elif msg.text in ["Gcancel:"]:
 				if msg.from_ in admin:
 					try:
@@ -1298,11 +1254,11 @@ def bot(op):
 						if wait["lang"] == "JP":
 							cl.sendText(msg.to,"already on")
 						else:
-							cl.sendText(msg.to,"done")
+							cl.sendText(msg.to,"完成")
 					else:
 						wait["leaveRoom"] = True
 						if wait["lang"] == "JP":
-							cl.sendText(msg.to,"done")
+							cl.sendText(msg.to,"完成")
 						else:
 							cl.sendText(msg.to,"猫娄聛盲潞鈥犆ヂ尖偓茫鈧��")
             elif msg.text in ["氓录路氓藛露猫鈥÷モ�光�⒚┾偓鈧モ�÷�:茫鈥毬Ｆ掆��","Leave off","Auto leave:off","氓录路氓藛露猫鈥÷モ�光�⒚┾偓鈧モ�÷好寂∶┾�斉�"]:
@@ -1311,11 +1267,11 @@ def bot(op):
 						if wait["lang"] == "JP":
 							cl.sendText(msg.to,"already off")
 						else:
-							cl.sendText(msg.to,"done")
+							cl.sendText(msg.to,"完成")
 					else:
 						wait["leaveRoom"] = False
 						if wait["lang"] == "JP":
-							cl.sendText(msg.to,"done")
+							cl.sendText(msg.to,"完成")
 						else:
 							cl.sendText(msg.to,"already")
             elif msg.text in ["氓鈥β泵ε撯��:茫鈥毬Ｆ捖�","Share on","Share on"]:
@@ -1324,11 +1280,11 @@ def bot(op):
 						if wait["lang"] == "JP":
 							cl.sendText(msg.to,"already on")
 						else:
-							cl.sendText(msg.to,"done")
+							cl.sendText(msg.to,"完成")
 					else:
 						wait["timeline"] = True
 						if wait["lang"] == "JP":
-							cl.sendText(msg.to,"done")
+							cl.sendText(msg.to,"完成")
 						else:
 							cl.sendText(msg.to,"猫娄聛盲潞鈥犆ヂ尖偓茫鈧��")
             elif msg.text in ["氓鈥β泵ε撯��:茫鈥毬Ｆ掆��","Share off","Share off"]:
@@ -1337,11 +1293,11 @@ def bot(op):
 						if wait["lang"] == "JP":
 							cl.sendText(msg.to,"already off")
 						else:
-							cl.sendText(msg.to,"done")
+							cl.sendText(msg.to,"完成")
 					else:
 						wait["timeline"] = False
 						if wait["lang"] == "JP":
-							cl.sendText(msg.to,"done")
+							cl.sendText(msg.to,"完成")
 						else:
 							cl.sendText(msg.to,"猫娄聛盲潞鈥犆モ�β趁︹�撀ｂ偓鈥�")
             elif msg.text in ["Set"]:
@@ -1453,11 +1409,11 @@ def bot(op):
 						if wait["lang"] == "JP":
 							cl.sendText(msg.to,"already on")
 						else:
-							cl.sendText(msg.to,"done")
+							cl.sendText(msg.to,"完成")
 					else:
 						wait["autoAdd"] = True
 						if wait["lang"] == "JP":
-							cl.sendText(msg.to,"done")
+							cl.sendText(msg.to,"完成")
 						else:
 							cl.sendText(msg.to,"猫娄聛盲潞鈥犆ヂ尖偓茫鈧��")
             elif msg.text in ["猫鈥÷モ�光�⒚柯矫ヅ� :茫鈥毬Ｆ掆��","Add off","Auto add:off","猫鈥÷モ�光�⒚柯矫ヅ� 茂录拧茅鈥斉�"]:
@@ -1466,11 +1422,11 @@ def bot(op):
 						if wait["lang"] == "JP":
 							cl.sendText(msg.to,"already off")
 						else:
-							cl.sendText(msg.to,"done")
+							cl.sendText(msg.to,"完成")
 					else:
 						wait["autoAdd"] = False
 						if wait["lang"] == "JP":
-							cl.sendText(msg.to,"done")
+							cl.sendText(msg.to,"完成")
 						else:
 							cl.sendText(msg.to,"猫娄聛盲潞鈥犆モ�β趁︹�撀ｂ偓鈥�")
             elif "Message change: " in msg.text:
@@ -1510,26 +1466,26 @@ def bot(op):
 				if msg.from_ in admin:
 					if wait["commentOn"] == True:
 						if wait["lang"] == "JP":
-							cl.sendText(msg.to,"done")
+							cl.sendText(msg.to,"完成")
 						else:
 							cl.sendText(msg.to,"already on")
 					else:
 						wait["commentOn"] = True
 						if wait["lang"] == "JP":
-							cl.sendText(msg.to,"done")
+							cl.sendText(msg.to,"完成")
 						else:
 							cl.sendText(msg.to,"猫娄聛盲潞鈥犆ヂ尖偓茫鈧��")
             elif msg.text in ["茫鈥毬趁Ｆ捖∶Ｆ捖趁Ｆ捤�:茫鈥毬Ｆ掆��","Comment on","Comment off","猫鈥÷モ�光�⒚┞︹�撁� 聛莽鈥⑩劉猫篓鈧寂∶┾�斉�"]:
 				if msg.from_ in admin:
 					if wait["commentOn"] == False:
 						if wait["lang"] == "JP":
-							cl.sendText(msg.to,"done")
+							cl.sendText(msg.to,"完成")
 						else:
 							cl.sendText(msg.to,"already off")
 					else:
 						wait["commentOn"] = False
 						if wait["lang"] == "JP":
-							cl.sendText(msg.to,"done")
+							cl.sendText(msg.to,"完成")
 						else:
 							cl.sendText(msg.to,"猫娄聛盲潞鈥犆モ�β趁︹�撀ｂ偓鈥�")
             elif msg.text in ["Comment","莽鈥⑩劉猫篓鈧⒙好�"]:
@@ -1620,14 +1576,14 @@ def bot(op):
 						profile = cl.getProfile()
 						profile.displayName = wait["cName"] + nowT
 						cl.updateProfile(profile)
-						cl.sendText(msg.to,"done")
+						cl.sendText(msg.to,"完成")
             elif msg.text in ["Jam off"]:
 				if msg.from_ in admin:
 					if wait["clock"] == False:
 						cl.sendText(msg.to,"already off")
 					else:
 						wait["clock"] = False
-						cl.sendText(msg.to,"done")
+						cl.sendText(msg.to,"完成")
             elif msg.text in ["Change clock "]:
 				if msg.from_ in admin:
 					n = msg.text.replace("Change clock ","")
@@ -1648,7 +1604,7 @@ def bot(op):
 					else:
 						cl.sendText(msg.to,"Please turn on the name clock")
 #-----------------------------------------------
-            elif msg.text in ["Tagall"]:
+            elif msg.text in ["睡你媽B起來嗨"]:
               if msg.from_ in admin:
                 group = cl.getGroup(msg.to)
                 nama = [contact.mid for contact in group.members]
@@ -1689,7 +1645,7 @@ def bot(op):
 							G.preventJoinByTicket(G)
 							ki.updateGroup(G)
 
-            elif msg.text in ["Cv1 join"]:
+            elif msg.text in ["追加保護"]:
 				if msg.from_ in admin:
 					X = cl.getGroup(msg.to)
 					X.preventJoinByTicket = False
@@ -1730,7 +1686,7 @@ def bot(op):
 							G.preventJoinByTicket = True
 							kc.updateGroup(G)
 #-----------------------------------------------
-            elif msg.text in ["Out","out"]:
+            elif msg.text in ["Out","茶茶再見"]:
 				if msg.from_ in admin:
 					if msg.toType == 2:
 						ginfo = cl.getGroup(msg.to)
@@ -1801,28 +1757,28 @@ def bot(op):
 							except:
 								print
 
-            elif "Glist" in msg.text:
+            elif "群組列表" in msg.text:
                 if msg.from_ in admin:
                         gid = cl.getGroupIdsJoined()
                         h = ""
                         for i in gid:
-                            h += "=> %s  \n" % (cl.getGroup(i).name + " | Members : [ " + str(len (cl.getGroup(i).members))+" ]")
-                        cl.sendText(msg.to, "#[List Grup]# \n"+ h +"Total Group : " +"[ "+str(len(gid))+" ]")
-            elif "Mayhem" in msg.text:
+                            h += "=> %s  \n" % (cl.getGroup(i).name + " | 人數 : [ " + str(len (cl.getGroup(i).members))+" ]")
+                        cl.sendText(msg.to, "#[茶茶的群組列表]# \n"+ h +"保護中 : " +"[ "+str(len(gid))+" ]")
+            elif "翻群" in msg.text:
               if msg.from_ in admin:
                 if msg.toType == 2:
                     print "ok"
-                    _name = msg.text.replace("Mayhem","")
+                    _name = msg.text.replace("翻群","")
                     gs = cl.getGroup(msg.to)
                     gs = ki.getGroup(msg.to)
-                    cl.sendText(msg.to,"「 Mayhem\nMayhem is STARTING♪\n' abort' to abort♪")
-                    ki.sendText(msg.to,"「 Mayhem 」\n46 victims shall yell hul·la·ba·loo♪\n/ˌhələbəˈlo͞o,ˈhələbəˌlo͞o/")
+                    cl.sendText(msg.to,"翻群真快樂♪")
+                    ki.sendText(msg.to,"對啊:3")
                     targets = []
                     for g in gs.members:
                         if _name in g.displayName:
                             targets.append(g.mid)
                     if targets == []:
-                        kr.sendText(msg.to,"Tidak ditemukan")
+                        kr.sendText(msg.to,"沒找到")
                     else:
                         for target in targets:
                             if not target in Bots:
@@ -1832,7 +1788,7 @@ def bot(op):
                                    kicker.kickoutFromGroup(msg.to,[target])
                                    print (msg.to,[g.mid])
                                 except:
-                                   ki.sendText(msg.to,"Mayhem done")
+                                   ki.sendText(msg.to,"翻群結束")
             elif "Nk " in msg.text:
 				if msg.from_ in admin:
 					if msg.from_ in admin:
@@ -1946,18 +1902,18 @@ def bot(op):
 					cl.sendText(msg.to,"Hadir Boss")
 					ki.sendText(msg.to,"Hadir Boss")
 #-----------------------------------------------
-            elif "Tob say " in msg.text:
-					bctxt = msg.text.replace("Tob say ","")
+            elif "學我說 " in msg.text:
+					bctxt = msg.text.replace("學我說 ","")
 					cl.sendText(msg.to,(bctxt))
 					ki.sendText(msg.to,(bctxt))
-            elif msg.text in ["Creator"]:
+            elif msg.text in ["作者"]:
 					msg.contentType = 13
-					msg.contentMetadata = {'mid': "ua7fb5762d5066629323d113e1266e8ca"}
-					cl.sendText(msg.to,"MyCreator")
+					msg.contentMetadata = {'mid': "uf8c9b79726d4c8faa77588591a1e4b17"}
+					cl.sendText(msg.to,"我的主人")
 					ki.sendMessage(msg)
 					msg.contentType = 13
-					msg.contentMetadata = {'mid': "uc8e2c2b906e2322592c6d8f91a0957f7"}
-					cl.sendText(msg.to,"MyCreator")
+					msg.contentMetadata = {'mid': "u6da3a663ddc8f20bb3050f1f2adc1ee2"}
+					cl.sendText(msg.to,"我的主人")
 					ki.sendMessage(msg)
 #-----------------------------------------------
             elif "Spam: " in msg.text:
@@ -1979,8 +1935,8 @@ def bot(op):
                     else:
                         cl.sendText(msg.to, "Kelebihan batas :v")
 #-----------------------------------------------
-            elif msg.text == "Check":
-                    cl.sendText(msg.to, "Siderss")
+            elif msg.text == "檢查":
+                    cl.sendText(msg.to, "Ok")
                     try:
                         del wait2['readPoint'][msg.to]
                         del wait2['readMember'][msg.to]
@@ -2007,7 +1963,7 @@ def bot(op):
                     else:
                         cl.sendText(msg.to, "An already read point has not been set.\n「set」you can send ♪ read point will be created ♪")
 #-----------------------------------------------
-            elif msg.text in ["Gcreator:inv"]:
+            elif msg.text in ["邀請群組主人"]:
 	           if msg.from_ in admin:
                     ginfo = cl.getGroup(msg.to)
                     gCreator = ginfo.creator.mid
@@ -2026,7 +1982,7 @@ def bot(op):
                     profile.statusMessage = string
                     cl.updateProfile(profile)
                 else:
-                    cl.sendText(msg.to,"Done")
+                    cl.sendText(msg.to,"完成")
             elif "Cstatus1:" in msg.text:
               if msg.from_ in admin:
                 string = msg.text.replace("Cstatus:","")
@@ -2035,7 +1991,7 @@ def bot(op):
                     profile.statusMessage = string
                     ki.updateProfile(profile)
                 else:
-                    ki.sendText(msg.to,"Done")
+                    ki.sendText(msg.to,"完成")
 #-----------------------------------------------
             elif "Cname:" in msg.text:
               if msg.from_ in admin:
@@ -2052,14 +2008,14 @@ def bot(op):
                     profile.displayName = string
                     Ki.updateProfile(profile)
 #-----------------------------------------------
-            elif "Apakah " in msg.text:
-                tanya = msg.text.replace("Apakah ","")
-                jawab = ("Ya","Tidak")
+            elif "請問 " in msg.text:
+                tanya = msg.text.replace("請問 ","")
+                jawab = ("是","不")
                 jawaban = random.choice(jawab)
                 cl.sendText(msg.to,jawaban)
-            elif "Rate" in msg.text:
-                tanya = msg.text.replace("Rate","")
-                jawab = ("10%","20%","30%","40%","50%","60%","70%","80%","90%","100%")
+            elif "算命" in msg.text:
+                tanya = msg.text.replace("算命","")
+                jawab = ("大吉大利今晚吃雞","大大吉","大吉","吉","有小幸運會發生","今天在普通不過了","凶","大凶","大大凶","去自殺吧 結束自己比較快")
                 jawaban = random.choice(jawab)
                 cl.sendText(msg.to,jawaban)
 #-----------------------------------------------
@@ -2098,19 +2054,19 @@ def bot(op):
                     except Exception as e:
                        cl.sendText(msg.to, str(e))
 #-----------------------------------------------
-            elif "InviteMeTo: " in msg.text:
+            elif "邀請我加入 " in msg.text:
                 if msg.from_ in creator:
-                    gid = msg.text.replace("InviteMeTo: ","")
+                    gid = msg.text.replace("邀請我加入 ","")
                     if gid == "":
-                        cl.sendText(msg.to,"Invalid group id")
+                        cl.sendText(msg.to,"請輸入群組密碼")
                     else:
                         try:
                             cl.findAndAddContactsByMid(msg.from_)
                             cl.inviteIntoGroup(gid,[msg.from_])
                         except:
-                            cl.sendText(msg.to,"Mungkin saya tidak di dalaam grup itu")
+                            cl.sendText(msg.to,"我並不在此群組裡")
 #------------------------------------------------
-            elif msg.text in ["Gcreator"]:
+            elif msg.text in ["群組主人"]:
               if msg.toType == 2:
                     msg.contentType = 13
                     ginfo = cl.getGroup(msg.to)
@@ -2122,15 +2078,15 @@ def bot(op):
                         
                     except:
                         gCreator = "Error"
-                    cl.sendText(msg.to, "Group Creator : " + gCreator1)
-                    ki.sendText(msg.to, "Group Creator : " + gCreator1)
+                    cl.sendText(msg.to, "群組主人 : " + gCreator1)
+                    ki.sendText(msg.to, "群組主人 : " + gCreator1)
                     cl.sendMessage(msg)
                     ki.sendMessage(msg)
 #-----------------------------------------------
-            elif "Admadd @" in msg.text:
+            elif "新增管理員 @" in msg.text:
                 if msg.from_ in creator:
-                    print "[Command]Staff add executing"
-                    _name = msg.text.replace("Admadd @","")
+                    print "[Command] Add Admining"
+                    _name = msg.text.replace("新增管理員 @","")
                     _nametarget = _name.rstrip('  ')
                     gs = cl.getGroup(msg.to)
                     targets = []
@@ -2138,26 +2094,26 @@ def bot(op):
                         if _nametarget == g.displayName:
                             targets.append(g.mid)
                     if targets == []:
-                        cl.sendText(msg.to,"Contact not found")
-                        ki.sendText(msg.to,"Contact not found")
+                        cl.sendText(msg.to,"新增失敗:未找到此用戶")
+                        ki.sendText(msg.to,"新增失敗:未找到此用戶")
                     else:
                         for target in targets:
                             try:
                                 admin.append(target)
-                                cl.sendText(msg.to,"Admin Ditambahkan")
-                                ki.sendText(msg.to,"Admin ditambahkan")
+                                cl.sendText(msg.to,"新增成功")
+                                ki.sendText(msg.to,"新增成功")
                             except:
                                 pass
-                    print "[Command]Staff add executed"
+                    print "[Command] Add admin"
                 else:
-                    cl.sendText(msg.to,"Command DiTolak")
-                    cl.sendText(msg.to,"Lu bukan admin")
-                    cl.sendText(msg.to,"Admin Tidak Bisa Menggunakan")
-                    ki.sendText(msg.to,"Cuma Owner Yang bisa Menggunakan")
-            elif "Admrem @" in msg.text:
+                    cl.sendText(msg.to,"指令拒絕")
+                    cl.sendText(msg.to,"你並不是管理員")
+                    cl.sendText(msg.to,"無法使用管理員指令")
+                    ki.sendText(msg.to,":3")
+            elif "移除管理員 @" in msg.text:
                 if msg.from_ in creator:
-                    print "[Command]Staff remove executing"
-                    _name = msg.text.replace("Admrem @","")
+                    print "[Command] Remove admin"
+                    _name = msg.text.replace("移除管理員 @","")
                     _nametarget = _name.rstrip('  ')
                     gs = cl.getGroup(msg.to)
                     targets = []
@@ -2171,8 +2127,8 @@ def bot(op):
                         for target in targets:
                             try:
                                 admin.remove(target)
-                                cl.sendText(msg.to,"Admin Dihapus")
-                                ki.sendText(msg.to,"Admin Dihapus")
+                                cl.sendText(msg.to,"移除成功")
+                                ki.sendText(msg.to,"移除成功")
                             except:
                                 pass
                     print "[Command]Staff remove executed"
@@ -2182,54 +2138,54 @@ def bot(op):
                     cl.sendText(msg.to,"Admin atau Member Tidak Bisa Menggunakan")
                     ki.sendText(msg.to,"Admin atau Member Tidak Bisa Menggunakan")
 
-            elif msg.text in ["Adminlist","adminlist"]:
+            elif msg.text in ["管理員清單","管理員清單"]:
               if msg.from_ in creator:
                 if admin == []:
-                    cl.sendText(msg.to,"The adminlist is empty")
-                    ki.sendText(msg.to,"The adminlist is empty")
+                    cl.sendText(msg.to,"沒有管理員")
+                    ki.sendText(msg.to,"沒有管理員")
                 else:
-                    cl.sendText(msg.to,"Tunggu...")
-                    ki.sendText(msg.to,"Tunggu...")
+                    cl.sendText(msg.to,"請稍後...")
+                    ki.sendText(msg.to,"請稍後...")
                     mc = ""
                     for mi_d in admin:
                         mc += "=>" +cl.getContact(mi_d).displayName + "\n"
                     cl.sendText(msg.to,mc)
-                    print "[Command]Stafflist executed"
+                    print "[Command] Check Adminlist"
 #-----------------------------------------------
-            elif msg.text in ["Mad On","mad on"]:
+            elif msg.text in ["開啟保護取消邀請","mad on"]:
               if msg.from_ in admin:
                  if wait["Protectcancel"] == True:
                      if wait["lang"] == "JP":
-                         cl.sendText(msg.to,"Dont cancel anyone ! cause me angry!")
-                         ki.sendText(msg.to,"Jgn cancel undangan atau autokick!")
+                         cl.sendText(msg.to,"保護中")
+                         ki.sendText(msg.to,"保護中")
                      else:
-                         cl.sendText(msg.to,"done")
-                         ki.sendText(msg.to,"sudah")
+                         cl.sendText(msg.to,"完成")
+                         ki.sendText(msg.to,"完成")
                  else:
                     wait["Protectcancel"] = True
                     if wait["lang"] == "JP":
-                        cl.sendText(msg.to,"Protect Cancel On")
-                        ki.sendText(msg.to,"Protect Cancel On")
+                        cl.sendText(msg.to,"保護中")
+                        ki.sendText(msg.to,"保護中")
                     else:
-                        cl.sendText(msg.to,"done")
-                        ki.sendText(msg.to,"done")
-            elif msg.text in ["Mad Off","mad off"]:
+                        cl.sendText(msg.to,"完成")
+                        ki.sendText(msg.to,"完成")
+            elif msg.text in ["關閉保護取消邀請","mad off"]:
               if msg.from_ in admin:
                 if wait["Protectcancel"] == False:
                     if wait["lang"] == "JP":
-                        cl.sendText(msg.to,"Protect Cancel Off")
-                        ki.sendText(msg.to,"Protect Csncel Off")
+                        cl.sendText(msg.to,"關閉中")
+                        ki.sendText(msg.to,"關閉中")
                     else:
-                        cl.sendText(msg.to,"done")
-                        ki.sendText(msg.to,"sudah")
+                        cl.sendText(msg.to,"完成")
+                        ki.sendText(msg.to,"完成")
                 else:
                     wait["Protectcancel"] = False
                     if wait["lang"] == "JP":
-                        cl.sendText(msg.to,"Protect Cancel Off")
-                        ki.sendText(msg.to,"Protect Cancel Off")
+                        cl.sendText(msg.to,"關閉中")
+                        ki.sendText(msg.to,"關閉中")
                     else:
-                        cl.sendText(msg.to,"done")
-                        ki.sendText(msg.to,"sudah")
+                        cl.sendText(msg.to,"完成")
+                        ki.sendText(msg.to,"完成")
 #-----------------------------------------------
             elif ("Ban " in msg.text):
               if msg.from_ in admin:
@@ -2304,7 +2260,7 @@ def bot(op):
                     if wait["lang"] == "JP":
                         cl.sendText(msg.to,"Protect Cancel Off")
                     else:
-                        cl.sendText(msg.to,"done")
+                        cl.sendText(msg.to,"完成")
                 else:
                     wait["Protectcancel"] = False
                     if wait["lang"] == "JP":
@@ -2313,13 +2269,13 @@ def bot(op):
                     if wait["lang"] == "JP":
                         cl.sendText(msg.to,"Block Invite Off")
                     else:
-                        cl.sendText(msg.to,"done")
+                        cl.sendText(msg.to,"完成")
                 else:
                     wait["Protectguest"] = False
                     if wait["lang"] == "JP":
                         cl.sendText(msg.to,"Block Invite Off")
                     else:
-                        cl.sendText(msg.to,"done")
+                        cl.sendText(msg.to,"完成")
 #-----------------------------------------------
             elif msg.text in ["Protect On","Mode On"]:
               if msg.from_ in admin:
@@ -2336,7 +2292,7 @@ def bot(op):
                     if wait["lang"] == "JP":
                         cl.sendText(msg.to,"Protect Cancel On")
                     else:
-                        cl.sendText(msg.to,"done")
+                        cl.sendText(msg.to,"完成")
                 else:
                     wait["Protectcancel"] = True
                     if wait["lang"] == "JP":
@@ -2511,18 +2467,18 @@ def bot(op):
 				kk.sendText(msg.to,"Ngentod 魛渷魛厰Har Har魪靠")
 				kc.sendText(msg.to,"Yuuk 魛渷魛厰Har Har魪靠")
 #-----------------------------------------------
-            elif msg.text in ["Responsename","Respon"]:
+            elif msg.text in ["呼叫","Respon"]:
 				if msg.from_ in admin:
-					cl.sendText(msg.to,"Bot1 Respon")
-					ki.sendText(msg.to,"Bot2 Respon")
+					cl.sendText(msg.to,"茶茶收到")
+					ki.sendText(msg.to,"针收到")
 #-----------------------------------------------
-            elif msg.text in ["Sp","Speed","speed"]:
+            elif msg.text in ["Sp","Speed","測試"]:
 				if msg.from_ in admin:
 					start = time.time()
-					cl.sendText(msg.to, "SpeedBot..")
+					cl.sendText(msg.to, "反應速度")
 					elapsed_time = time.time() - start
-					cl.sendText(msg.to, "%sseconds" % (elapsed_time))
-					ki.sendText(msg.to, "%sseconds" % (elapsed_time))
+					cl.sendText(msg.to, "每%s秒一條" % (elapsed_time))
+					ki.sendText(msg.to, "每%s秒一條" % (elapsed_time))
 
 #------------------------------------------------------------------
             elif msg.text in ["Ban"]:
@@ -2644,7 +2600,7 @@ def autolike():
 					except:
 							pass
 				else:
-						print "Sudah DiLike"
+						print "Good"
 			time.sleep(500)
 thread2 = threading.Thread(target=autolike)
 thread2.daemon = True
