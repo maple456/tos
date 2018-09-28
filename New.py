@@ -814,12 +814,12 @@ def bot(op):
 						if wait["lang"] == "JP":
 							cl.sendText(msg.to,"完成")
 						else:
-							cl.sendText(msg.to,"already open")
+							cl.sendText(msg.to,"已經開啟了")
 					else:
 						if wait["lang"] == "JP":
-							cl.sendText(msg.to,"Can not be used outside the group")
+							cl.sendText(msg.to,"不能在群組外使用")
 						else:
-							cl.sendText(msg.to,"Not for use less than group")
+							cl.sendText(msg.to,"不得少於群組使用")
             elif msg.text in ["Cv1 ourl","Cv1 link on"]:
 				if msg.from_ in admin:
 					if msg.toType == 2:
@@ -1174,37 +1174,37 @@ def bot(op):
                         cl.sendText(msg.to,"Protect QR Off")
                     else:
                         cl.sendText(msg.to,"完成")
-            elif msg.text in ["茅鈧Ｃ德∶モ�λ�:茫鈥毬Ｆ捖�","K on","Contact on","茅隆炉莽陇潞茂录拧茅鈥撯��"]:
+            elif msg.text in ["茅鈧Ｃ德∶モ�λ�:茫鈥毬Ｆ捖�","K on","Contact on","查看友資 開啟"]:
 				if msg.from_ in admin:
 					if wait["contact"] == True:
 						if wait["lang"] == "JP":
-							cl.sendText(msg.to,"already on")
+							cl.sendText(msg.to,"已經開啟")
 						else:
 							cl.sendText(msg.to,"完成")
 					else:
 						wait["contact"] = True
 						if wait["lang"] == "JP":
-							cl.sendText(msg.to,"already on")
+							cl.sendText(msg.to,"已經開啟")
 						else:
 							cl.sendText(msg.to,"完成")
-            elif msg.text in ["茅鈧Ｃ德∶モ�λ�:茫鈥毬Ｆ掆��","K off","Contact off","茅隆炉莽陇潞茂录拧茅鈥斉�"]:
+            elif msg.text in ["茅鈧Ｃ德∶モ�λ�:茫鈥毬Ｆ掆��","K off","Contact off","查看友資 關閉"]:
 				if msg.from_ in admin:
 					if wait["contact"] == False:
 						if wait["lang"] == "JP":
-							cl.sendText(msg.to,"already off")
+							cl.sendText(msg.to,"已經關閉")
 						else:
-							cl.sendText(msg.to,"done ")
+							cl.sendText(msg.to,"完成")
 					else:
 						wait["contact"] = False
 						if wait["lang"] == "JP":
-							cl.sendText(msg.to,"already off")
+							cl.sendText(msg.to,"已經關閉")
 						else:
 							cl.sendText(msg.to,"完成")
-            elif msg.text in ["猫鈥÷モ�光�⒚ヂ忊�毭ヅ� :茫鈥毬Ｆ捖�","Join on","Auto join:on","猫鈥÷モ�光�⒚ヂ徠捗ヅ� 茂录拧茅鈥撯��"]:
+            elif msg.text in ["猫鈥÷モ�光�⒚ヂ忊�毭ヅ� :茫鈥毬Ｆ捖�","Join on","Auto join:on","自動入群 開啟"]:
 				if msg.from_ in admin:
 					if wait["autoJoin"] == True:
 						if wait["lang"] == "JP":
-							cl.sendText(msg.to,"already on")
+							cl.sendText(msg.to,"已經開啟")
 						else:
 							cl.sendText(msg.to,"完成")
 					else:
@@ -1213,17 +1213,17 @@ def bot(op):
 							cl.sendText(msg.to,"already on")
 						else:
 							cl.sendText(msg.to,"完成")
-            elif msg.text in ["猫鈥÷モ�光�⒚ヂ忊�毭ヅ� :茫鈥毬Ｆ掆��","Join off","Auto join:off","猫鈥÷モ�光�⒚ヂ徠捗ヅ� 茂录拧茅鈥斉�"]:
+            elif msg.text in ["猫鈥÷モ�光�⒚ヂ忊�毭ヅ� :茫鈥毬Ｆ掆��","Join off","Auto join:off","自動入群 關閉"]:
 				if msg.from_ in admin:
 					if wait["autoJoin"] == False:
 						if wait["lang"] == "JP":
-							cl.sendText(msg.to,"already off")
+							cl.sendText(msg.to,"已經關閉")
 						else:
 							cl.sendText(msg.to,"完成")
 					else:
 						wait["autoJoin"] = False
 						if wait["lang"] == "JP":
-							cl.sendText(msg.to,"already off")
+							cl.sendText(msg.to,"已經關閉")
 						else:
 							cl.sendText(msg.to,"完成")
             elif msg.text in ["Gcancel:"]:
@@ -2325,27 +2325,27 @@ def bot(op):
             			msg.contentMetadata = {'mid': msg.contentMetadata["mid"]}
             			cl.sendMessage(msg)
             			ki.sendMessage(msg)
-            elif "Mimic:" in msg.text:
+            elif "模仿:" in msg.text:
             	if msg.from_ in admin:
             		cmd = msg.text.replace("Mimic:","")
             		if cmd == "on":
             			if mimic["status"] == False:
             				mimic["status"] = True
-            				cl.sendText(msg.to,"Mimic on")
-            				ki.sendText(msg.to,"Mimic on")
+            				cl.sendText(msg.to,"模仿 開啟")
+            				ki.sendText(msg.to,"模仿 開啟")
             			else:
-            				cl.sendText(msg.to,"Mimic already on")
-            				ki.seneText(msg.to,"Mimic already on")
+            				cl.sendText(msg.to,"模仿已經開啟")
+            				ki.seneText(msg.to,"模仿已經開啟")
             		elif cmd == "off":
             			if mimic["status"] == True:
             				mimic["status"] = False
-            				cl.sendText(msg.to,"Mimic off")
-            				ki.sendText(msg.to,"Mimic off")
+            				cl.sendText(msg.to,"模仿 關閉")
+            				ki.sendText(msg.to,"模仿 關閉")
             			else:
-            				cl.sendText(msg.to,"Mimic already off")
-            				ki.sendText(msg.to,"Mimic already off")
+            				cl.sendText(msg.to,"模仿已經關閉")
+            				ki.sendText(msg.to,"模仿已經關閉")
             		elif "add:" in cmd:
-            			target0 = msg.text.replace("Mimic:add:","")
+            			target0 = msg.text.replace("模仿:add:","")
             			target1 = target0.lstrip()
             			target2 = target1.replace("@","")
             			target3 = target2.rstrip()
@@ -2357,19 +2357,19 @@ def bot(op):
             				if _name == a.displayName:
             					targets.append(a.mid)
             			if targets == []:
-            				cl.sendText(msg.to,"No targets")
-            				ki.sendText(msg.to,"No targets")
+            				cl.sendText(msg.to,"沒有目標")
+            				ki.sendText(msg.to,"沒有目標")
             			else:
             				for target in targets:
             					try:
             						mimic["target"][target] = True
-            						cl.sendText(msg.to,"Success added target")
-            						ki.sendText(msg.to,"Success added target")
+            						cl.sendText(msg.to,"成功增加了目標")
+            						ki.sendText(msg.to,"成功增加了目標")
             						#cl.sendMessageWithMention(msg.to,target)
             						break
             					except:
-            						cl.sendText(msg.to,"Failed")
-            						ki.sendText(msg.to,"Failed")
+            						cl.sendText(msg.to,"失敗")
+            						ki.sendText(msg.to,"失敗")
             						break
             		elif "del:" in cmd:
             			target0 = msg.text.replace("Mimic:del:","")
@@ -2384,24 +2384,24 @@ def bot(op):
             				if _name == a.displayName:
             					targets.append(a.mid)
             			if targets == []:
-            				cl.sendText(msg.to,"No targets")
-            				ki.sendText(msg.to,"No targets")
+            				cl.sendText(msg.to,"沒有目標")
+            				ki.sendText(msg.to,"沒有目標")
             			else:
             				for target in targets:
             					try:
             						del mimic["target"][target]
-            						cl.sendText(msg.to,"Success deleted target")
-            						ki.sendText(msg.to,"Success deleted target")
+            						cl.sendText(msg.to,"成功刪除目標")
+            						ki.sendText(msg.to,"成功刪除目標")
             						#cl.sendMessageWithMention(msg.to,target)
             						break
             					except:
-            						cl.sendText(msg.to,"Failed!")
-            						ki.sendText(msg.to,"Failed!")
+            						cl.sendText(msg.to,"失敗!")
+            						ki.sendText(msg.to,"失敗!")
             						break
-            		elif cmd == "ListTarget":
+            		elif cmd == "模仿列表":
             			if mimic["target"] == {}:
-            				cl.sendText(msg.to,"No target")
-            				ki.sendText(msg.to,"No target")
+            				cl.sendText(msg.to,"沒有目標")
+            				ki.sendText(msg.to,"沒有目標")
                     	else:
                     		lst = "<<Lit Target>>"
                     		total = len(mimic["target"])
@@ -2426,11 +2426,11 @@ def bot(op):
                          if '&List' not in a['href']:
                                cl.sendText(msg.to,'http://www.youtube.com' + a['href'] + a['title'])
 #-----------------------------------------------
-            elif "Copy @" in msg.text:
+            elif "拷貝 @" in msg.text:
             	print "Clone succes"
             	if msg.toType == 2:
             	    if msg.from_ in admin:
-            	        _name = msg.text.replace("Copy @","")
+            	        _name = msg.text.replace("拷貝 @","")
                         _nametarget = name.rstrip(" ")
                         gs = cl.getGroup(msg.to)
                         gs = ki.getGroup(msg.to)
@@ -2439,15 +2439,15 @@ def bot(op):
                         if _nametarget == g.displayName:
                                  targets.append(g.mid)
                         if targets == []:
-                            cl.sendText(msg.to,"Contact not found")
-                            ki.sendText(msg.to,"Contact not found")
+                            cl.sendText(msg.to,"找不到聯繫人")
+                            ki.sendText(msg.to,"找不到聯繫人")
 #-----------------------------------------------
-            elif msg.text in ["hmm"]:
+            elif msg.text in ["哈哈","XD","笑死"]:
 				if msg.from_ in admin:
-					ki.sendText(msg.to,"Batuk Kong??")
-            elif msg.text in ["wkwkwk"]:
+					ki.sendText(msg.to,"笑三洨??")
+            elif msg.text in ["肥熊"]:
 				if msg.from_ in admin:
-					ki.sendText(msg.to,"malik mana ya , gw jadi kangen naena sama dia")
+					ki.sendText(msg.to,"胖起來胖起來!!")
             elif msg.text in ["Cv say chomel pekok"]:
 				if msg.from_ in admin:
 					ki.sendText(msg.to,"Chomel pekok 魛渷魛厰Har Har魪靠")
@@ -2455,8 +2455,8 @@ def bot(op):
 					kc.sendText(msg.to,"Chomel pekok 魛渷魛厰Har Har魪靠")
             elif msg.text in ["#welcome"]:
 				if msg.from_ in admin:
-					ki.sendText(msg.to,"Selamat datang di Grup")
-					kk.sendText(msg.to,"Jangan nakal ok!")
+					ki.sendText(msg.to,"歡迎來到本群組")
+					kk.sendText(msg.to,"請乖乖待好")
 #-----------------------------------------------
             elif msg.text in ["PING","Ping","ping","Samlekom","samlekom"]:
 				ki.sendText(msg.to,"Mamanx 魛渷魛厰Har Har魪靠")
@@ -2465,16 +2465,16 @@ def bot(op):
 #-----------------------------------------------
             elif msg.text in ["呼叫","Respon"]:
 				if msg.from_ in admin:
-					cl.sendText(msg.to,"茶茶收到")
-					ki.sendText(msg.to,"针收到")
+					cl.sendText(msg.to,"楓糖收到")
+					ki.sendText(msg.to,"機器收到")
 #-----------------------------------------------
             elif msg.text in ["Sp","Speed","測試"]:
 				if msg.from_ in admin:
 					start = time.time()
 					cl.sendText(msg.to, "反應速度")
 					elapsed_time = time.time() - start
-					cl.sendText(msg.to, "每%s秒一條" % (elapsed_time))
-					ki.sendText(msg.to, "每%s秒一條" % (elapsed_time))
+					cl.sendText(msg.to, "每%s秒反應一次" % (elapsed_time))
+					ki.sendText(msg.to, "每%s秒反應一次" % (elapsed_time))
 
 #------------------------------------------------------------------
             elif msg.text in ["Ban"]:
