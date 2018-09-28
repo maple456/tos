@@ -66,9 +66,9 @@ helpMessage ="""
    茶茶再見
 
 =========================
-製作:针.
-管理:DxSdzer.
-主機:茶茶
+製作:楓糖
+管理:楓糖.
+主機:w10
 國家:Taiwan
 """
 KAC=[cl,ki]
@@ -76,8 +76,8 @@ mid = cl.getProfile().mid
 Amid = ki.getProfile().mid
 
 Bots=[mid,Amid]
-admin=["uf274cd013e86f8bffec153a26e45f247","uf8c9b79726d4c8faa77588591a1e4b17"]
-creator=["uf274cd013e86f8bffec153a26e45f247","uf8c9b79726d4c8faa77588591a1e4b17"]
+admin=["uec6d62c3e4a61f033332bc1d86133e49","ud9964664052659ba468d55de6df025be"]
+creator=["uec6d62c3e4a61f033332bc1d86133e49"]
 wait = {
     'contact':True,
     'autoJoin':True,
@@ -85,9 +85,9 @@ wait = {
     'leaveRoom':True,
     'timeline':True,
     'autoAdd':True,
-    'message':"嗨 我是茶茶❤",
+    'message':"早安 我是楓糖",
     "lang":"JP",
-    "comment":"嗨 我是茶茶❤",
+    "comment":"早安 我是楓糖",
     "commentOn":True,
     "commentBlack":{},
     "wblack":False,
@@ -291,12 +291,12 @@ def bot(op):
                 group = random.choice(KAC).getGroup(op.param1)
                 cb = Message()
                 cb.to = op.param1
-                cb.text = "歡迎:" + random.choice(KAC).getContact(op.param2).displayName + "加入群組\n群組名稱:" + group.name + "\n群組主人 => " + group.creator.displayName
+                cb.text = "歡迎:" + random.choice(KAC).getContact(op.param2).displayName + "加入本群組\n群組名稱:" + group.name + "\n群組主人 => " + group.creator.displayName
                 random.choice(KAC).sendMessage(cb)
         if op.type == 15:
             if op.param2 in Bots:
                 return
-            ki.sendText(op.param1, "嗚嗚 離開惹")
+            ki.sendText(op.param1, "嗚嗚 他居然離開了")
             print "MemberLeft"
         if op.type == 13:
             if op.param3 in mid:
@@ -1686,7 +1686,7 @@ def bot(op):
 							G.preventJoinByTicket = True
 							kc.updateGroup(G)
 #-----------------------------------------------
-            elif msg.text in ["Out","茶茶再見"]:
+            elif msg.text in ["Out","楓糖再見"]:
 				if msg.from_ in admin:
 					if msg.toType == 2:
 						ginfo = cl.getGroup(msg.to)
@@ -1763,7 +1763,7 @@ def bot(op):
                         h = ""
                         for i in gid:
                             h += "=> %s  \n" % (cl.getGroup(i).name + " | 人數 : [ " + str(len (cl.getGroup(i).members))+" ]")
-                        cl.sendText(msg.to, "#[茶茶的群組列表]# \n"+ h +"保護中 : " +"[ "+str(len(gid))+" ]")
+                        cl.sendText(msg.to, "#[楓糖的群組列表]# \n"+ h +"保護中 : " +"[ "+str(len(gid))+" ]")
             elif "翻群" in msg.text:
               if msg.from_ in admin:
                 if msg.toType == 2:
@@ -1771,8 +1771,8 @@ def bot(op):
                     _name = msg.text.replace("翻群","")
                     gs = cl.getGroup(msg.to)
                     gs = ki.getGroup(msg.to)
-                    cl.sendText(msg.to,"翻群真快樂♪")
-                    ki.sendText(msg.to,"對啊:3")
+                    cl.sendText(msg.to,"翻群真的好嗎?")
+                    ki.sendText(msg.to,"好呀!")
                     targets = []
                     for g in gs.members:
                         if _name in g.displayName:
@@ -1908,11 +1908,7 @@ def bot(op):
 					ki.sendText(msg.to,(bctxt))
             elif msg.text in ["作者"]:
 					msg.contentType = 13
-					msg.contentMetadata = {'mid': "uf8c9b79726d4c8faa77588591a1e4b17"}
-					cl.sendText(msg.to,"我的主人")
-					ki.sendMessage(msg)
-					msg.contentType = 13
-					msg.contentMetadata = {'mid': "u6da3a663ddc8f20bb3050f1f2adc1ee2"}
+					msg.contentMetadata = {'mid': "uec6d62c3e4a61f033332bc1d86133e49"}
 					cl.sendText(msg.to,"我的主人")
 					ki.sendMessage(msg)
 #-----------------------------------------------
